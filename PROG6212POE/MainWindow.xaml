@@ -24,7 +24,7 @@
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=2}" Margin="529,525,59,88"/>
         <Button Content="Check Status" HorizontalAlignment="Left" Margin="21,622,0,0" VerticalAlignment="Top" Height="48" Width="126" FontSize="18"/>
         <TextBlock HorizontalAlignment="Left" Margin="664,95,0,0" TextWrapping="Wrap" Text="Upload Documents:" VerticalAlignment="Top" Width="281" Height="44" FontSize="22"/>
-        <Button Content="Upload Files" HorizontalAlignment="Left" Margin="664,163,0,0" VerticalAlignment="Top" Width="123" Height="47"/>
+        <Button Content="Upload Button" HorizontalAlignment="Left" Margin="664,151,0,0" VerticalAlignment="Top" Height="55" Width="154" FontSize="14" Click="Button_Click"/>
 
 
     </Grid>

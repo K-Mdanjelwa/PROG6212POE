@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="ProgramCoWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,49,0,0" TextWrapping="Wrap" Text="Search (Lecturer ID):" VerticalAlignment="Top"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,90,0,0" TextWrapping="Wrap" Text="Record Results:" VerticalAlignment="Top" Height="17" Width="106"/>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,107,400,201"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,256,0,0" TextWrapping="Wrap" Text="Days Worked:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,286,0,0" TextWrapping="Wrap" Text="Hourly Rate:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,324,0,0" TextWrapping="Wrap" Text="Eligible for claim?" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="155,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="155,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Approve" HorizontalAlignment="Left" Margin="51,345,0,0" VerticalAlignment="Top" Width="65"/>
+        <Button Content="Reject" HorizontalAlignment="Left" Margin="170,345,0,0" VerticalAlignment="Top" Width="76"/>
+
     </Grid>
 </Window>
