@@ -106,5 +106,12 @@ namespace PROG6212POE
                 MessageBox.Show("File uploaded successfully!");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            FinanceManWindow run2=new FinanceManWindow();
+           run2.Show();
+        }
     }
 }

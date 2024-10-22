@@ -30,6 +30,7 @@
         <Label Content="Hourly Rate (R):" HorizontalAlignment="Left" Margin="650,117,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBox Name="numHRate" HorizontalAlignment="Left" Margin="770,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="26"/>
         <TextBlock HorizontalAlignment="Left" Margin="917,126,0,0" TextWrapping="Wrap" Text="(Input amount Per hr)" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="710,328,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
 
     </Grid>
