@@ -9,22 +9,27 @@
     <Grid Background="#FFABE6F7">
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" FontStyle="Italic"><Run Language="en-za" Text="Claims System"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="New Claims" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="Lecturer ID:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,200,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,268,0,0" TextWrapping="Wrap" Text="Surname:" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,323,0,0" TextWrapping="Wrap" Text="Days Absent:" VerticalAlignment="Top" FontSize="24"/>
-        <Button Content="Submit" HorizontalAlignment="Left" Margin="20,404,0,0" VerticalAlignment="Top" Height="48" Width="126" FontSize="18" Background="#FF8899EF"/>
-        <TextBox HorizontalAlignment="Left" Margin="182,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316" Height="44"/>
-        <TextBox HorizontalAlignment="Left" Margin="182,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316" Height="44"/>
-        <TextBox HorizontalAlignment="Left" Margin="182,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316" Height="44"/>
-        <TextBox HorizontalAlignment="Left" Margin="182,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316" Height="44"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" Text="Lecturer ID:" VerticalAlignment="Top" FontSize="24" Height="34" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,181,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="24" Height="37" Width="68"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" TextWrapping="Wrap" Text="Surname:" VerticalAlignment="Top" FontSize="24" Height="31" Width="98"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,275,0,0" TextWrapping="Wrap" Text="Hours Worked:" VerticalAlignment="Top" FontSize="24" Height="34" Width="170"/>
+        <Button x:Name="submitBtn" Content="Submit" HorizontalAlignment="Left" Margin="21,328,0,0" VerticalAlignment="Top" Height="48" Width="126" FontSize="18" Background="#FF8899EF" Click="submitBtn1"/>
+        <TextBox HorizontalAlignment="Left" Margin="180,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="33" Name="numLectureId"/>
+        <TextBox HorizontalAlignment="Left" Margin="180,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="34" Name="txtName"/>
+        <TextBox HorizontalAlignment="Left" Margin="180,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="33" Name="txtSurname"/>
+        <TextBox HorizontalAlignment="Left" Margin="180,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" Height="34" Name="numHWorked"/>
         <TextBlock HorizontalAlignment="Left" Margin="20,486,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="374" FontSize="22" FontWeight="Bold" TextDecorations="Underline"><Run Text="Tra"/><Run Text="ck claims here if already claimed"/><Run Language="en-za" Text=":"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="35,555,0,0" TextWrapping="Wrap" Text="Lecturer ID:" VerticalAlignment="Top" FontSize="24" Width="145"/>
         <TextBox HorizontalAlignment="Left" Margin="185,543,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" Height="44"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=2}" Margin="529,525,59,88"/>
         <Button Content="Check Status" HorizontalAlignment="Left" Margin="21,622,0,0" VerticalAlignment="Top" Height="48" Width="126" FontSize="18" Background="#FF8899EF"/>
-        <TextBlock HorizontalAlignment="Left" Margin="664,95,0,0" TextWrapping="Wrap" Text="Upload Documents:" VerticalAlignment="Top" Width="281" Height="44" FontSize="22"/>
-        <Button Content="Upload Button" HorizontalAlignment="Left" Margin="664,151,0,0" VerticalAlignment="Top" Height="55" Width="154" FontSize="14" Click="Button_Click" Background="#FF8899EF"/>
+        <TextBlock HorizontalAlignment="Left" Margin="20,381,0,0" TextWrapping="Wrap" Text="Upload Documents (After submitting):" VerticalAlignment="Top" Width="388" Height="34" FontSize="22"/>
+        <Button Name="upBtn" Content="Upload File" HorizontalAlignment="Left" Margin="21,420,0,0" VerticalAlignment="Top" Height="55" Width="407" FontSize="14" Click="uploadBtn" Background="#FF8899EF"/>
+        <Label Content="Notes:" HorizontalAlignment="Left" Margin="650,168,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtNotes" HorizontalAlignment="Left" Margin="650,199,0,0" TextWrapping="Wrap" Text="Type your notes" VerticalAlignment="Top" Width="431" Height="28"/>
+        <Label Content="Hourly Rate (R):" HorizontalAlignment="Left" Margin="650,117,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox Name="numHRate" HorizontalAlignment="Left" Margin="770,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="917,126,0,0" TextWrapping="Wrap" Text="(Input amount Per hr)" VerticalAlignment="Top"/>
 
 
     </Grid>

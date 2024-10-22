@@ -10,11 +10,12 @@
 
         <TextBlock HorizontalAlignment="Left" Margin="495,109,0,0" TextWrapping="Wrap" Text="Hourly Rate(R/per hour):" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="629,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="txtLectureSearch" HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,49,0,0" TextWrapping="Wrap" Text="Search (Lecturer ID):" VerticalAlignment="Top"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF"/>
+        <Button Click="SearchBtn"  Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF" />
         <TextBlock HorizontalAlignment="Left" Margin="30,90,0,0" TextWrapping="Wrap" Text="Record Results:" VerticalAlignment="Top" Height="17" Width="106"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,107,400,201"/>
+        
         <TextBlock HorizontalAlignment="Left" Margin="30,311,0,0" TextWrapping="Wrap" Text="Change Status:" VerticalAlignment="Top" FontSize="14"/>
         <Button Content="Approve" HorizontalAlignment="Left" Margin="192,310,0,0" VerticalAlignment="Top" Width="66" Background="#FF57B065"/>
         <Button Content="Reject" HorizontalAlignment="Left" Margin="312,310,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B"/>

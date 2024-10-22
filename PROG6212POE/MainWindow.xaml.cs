@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.IO;
+using System.Diagnostics.Metrics;
 
 namespace PROG6212POE
 {
@@ -20,56 +21,90 @@ namespace PROG6212POE
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int LecturerID;
+        public static string fileName;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // Create an instance of OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "All files (*.*)|*.*"; // You can specify file types here
-
-            // Show dialog and get the result
-            if (openFileDialog.ShowDialog() == true)
-            {
-                // Get the selected file path and file name
-                string filePath = openFileDialog.FileName;
-                string fileName = System.IO.Path.GetFileName(filePath);
-
-                // Read the file into a byte array
-                byte[] fileData = File.ReadAllBytes(filePath);
-
-                // Save the file to the database
-                SaveFileToDatabase(fileName, fileData);
-            }
-        }
+     
 
         // Method to save the file to the database
-        private void SaveFileToDatabase(string fileName, byte[] fileData)
+       
+
+        private void submitBtn1(object sender, RoutedEventArgs e)
         {
-            // Define the connection string (replace with your database details)
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=WpfApp2;Integrated Security=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            SqlConnection con=new SqlConnection(connectionString);
 
-            // Define the SQL query for inserting the file into the database
-            string query = "INSERT INTO Documents (FileName, FileData) VALUES (@FileName, @FileData)";
+            con.Open();
 
-            // Open the connection and execute the command
+            LecturerID = int.Parse(numLectureId.Text);
+            string Name=txtName.Text;
+            string Surname=txtSurname.Text;
+            int HoursWorked = int.Parse(numHWorked.Text);
+            int HourRate=int.Parse(numHRate.Text);
+            
+            string Notes = txtNotes.Text;
+
+            string Query= "INSERT INTO Lecturer (LecturerID, LName, LSName, HoursWorked, HourRate, Notes)" +
+                " VALUES ('" + LecturerID + "', '" + Name + "', '" + Surname + "', '"+HoursWorked+ "', '" + HourRate + "','"+Notes+"')";
+
+            SqlCommand cmd = new SqlCommand(Query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Data successfully saved!!");
+
+        }
+
+        private void uploadBtn(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                try
+                {
+                    UploadFileToDatabase(filePath);
+                    upBtn.Content = $"Uploaded: {fileName}";
+                    MessageBox.Show("Uploaded successfully");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+        }
+        private void UploadFileToDatabase(string filePath)
+        {
+            byte[] fileData = File.ReadAllBytes(filePath);
+            fileName = System.IO.Path.GetFileName(filePath);
+
+            // Database connection string (replace with your actual database details)
+            string connectionString = "Data Source = labG9AEB3\\SQLEXPRESS; Initial Catalog = MyFormDB; Integrated Security = True; Encrypt = True; Trust Server Certificate = True";
+
+            // SQL query to insert the file data
+            string query = "INSERT INTO Files (LecturerId, FileName, FileData) VALUES ('" + LecturerID + "', @FileName, @FileData)";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@FileName", fileName);
-                command.Parameters.AddWithValue("@FileData", fileData);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Adding parameters for FileName and FileData
+                    command.Parameters.AddWithValue("@FileName", fileName);
+                    command.Parameters.AddWithValue("@FileData", fileData);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                    // Open the connection and execute the query
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
 
                 MessageBox.Show("File uploaded successfully!");
             }
         }
-
-      
     }
 }
