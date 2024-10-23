@@ -13,6 +13,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Diagnostics.Metrics;
+using System.Windows.Media.Media3D;
 
 namespace PROG6212POE
 {
@@ -61,7 +62,7 @@ namespace PROG6212POE
         private void uploadBtn(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All files (*.*)|*.*";
+            openFileDialog.Filter = "PDF files (*.pdf)|*.pdf|Word Documents (*.docx)|*.docx|Excel Worksheets (*.xlsx)|*.xlsx";
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -71,6 +72,18 @@ namespace PROG6212POE
                     UploadFileToDatabase(filePath);
                     upBtn.Content = $"Uploaded: {fileName}";
                     MessageBox.Show("Uploaded successfully");
+                    FileInfo fileInfo = new FileInfo(filePath);
+                    if (fileInfo.Length > 10485760)
+                    {
+                        MessageBox.Show( "Error: File size exceeds 10MB.");
+                        return;
+                    }
+                    string fileExtension = fileInfo.Extension.ToLower();
+                    if (fileExtension != ".pdf" && fileExtension != ".docx" && fileExtension != ".xlsx")
+                    {
+                        MessageBox.Show( "Error: Only PDF, DOCX, and XLSX files are allowed.");
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -82,12 +95,14 @@ namespace PROG6212POE
         {
             byte[] fileData = File.ReadAllBytes(filePath);
             fileName = System.IO.Path.GetFileName(filePath);
-
+            
+            string status = "Pending";
             // Database connection string (replace with your actual database details)
             string connectionString = "Data Source = labG9AEB3\\SQLEXPRESS; Initial Catalog = MyFormDB; Integrated Security = True; Encrypt = True; Trust Server Certificate = True";
 
             // SQL query to insert the file data
-            string query = "INSERT INTO Files (LecturerId, FileName, FileData) VALUES ('" + LecturerID + "', @FileName, @FileData)";
+            string query = "INSERT INTO Files (LecturerId, FileName, FileData) VALUES ('" + LecturerID + "', @FileName, @FileData);" +
+                "insert into Track(LecturerId,TStatus) values('" + LecturerID + "','"+status+"')";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -118,6 +133,47 @@ namespace PROG6212POE
         {
             ProgramCoWindow run = new ProgramCoWindow();
             run.Show();
+        }
+
+        private void statusBtn(object sender, RoutedEventArgs e)
+        {
+            int lecturerId = int.Parse(txtlectSearch.Text);
+
+            if (lecturerId!=0)
+            {
+                // Call the method to search files and populate the DataGrid
+                DataTable searchResults = track(lecturerId);
+                dataGridResults.ItemsSource = searchResults.DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a search value.");
+            }
+        }
+         private DataTable track(int lectId)
+        {
+            DataTable dataTable = new DataTable();
+
+            
+
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string query = "select a.TrackId, a.TStatus,b.ClaimNo,c.FileName " +
+                "from Track a, Lecturer b, Files c " +
+                "where a.LecturerId=b.LecturerId AND b.LecturerId=c.LecturerId and b.LecturerId=@Search " +
+                "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection)) 
+                {
+                    command.Parameters.AddWithValue("@Search",lectId );
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                }
+            }
+
+            return dataTable;
         }
     }
 }

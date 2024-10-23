@@ -27,7 +27,7 @@ namespace PROG6212POE
             InitializeComponent();
         }
 
-        
+
 
 
 
@@ -36,7 +36,7 @@ namespace PROG6212POE
             search = int.Parse(txtSearch.Text);
 
 
-            if (search !=0)
+            if (search != 0)
             {
                 // Call the method to search files and populate the DataGrid
                 DataTable searchResults = searchFunction(search);
@@ -113,12 +113,45 @@ namespace PROG6212POE
 
         private void approveBtn(object sender, RoutedEventArgs e)
         {
+            string approve = "Approved";
+
+            statusChange(approve);
+            MessageBox.Show($"updated successfully. \nApplication Approved.");
 
         }
 
         private void rejectBtn(object sender, RoutedEventArgs e)
         {
+            string reject = "Rejected";
 
+            statusChange(reject);
+            MessageBox.Show($"updated successfully. \nApplication Rejected.");
+        }
+
+        private void statusChange(string option)
+        {
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            // SQL query to update the lecturer name
+            string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the SQL query
+                    command.Parameters.AddWithValue("@LecturerID", search);
+                    command.Parameters.AddWithValue("@Status", option);
+
+                    // Open the connection and execute the update
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    // Check if any row was updated
+                    
+                }
+
+            }
         }
     }
 }

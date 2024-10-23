@@ -29,6 +29,8 @@ namespace PROG6212POE
         public FinanceManWindow()
         {
             InitializeComponent();
+            DataTable pendingResults = pendingClaims();
+            dataGridResults3.ItemsSource = pendingResults.DefaultView;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -57,7 +59,7 @@ namespace PROG6212POE
             DataTable dataTable = new DataTable();
 
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-            string query = "SELECT LecturerId, LName, Notes FROM Lecturer WHERE LecturerId LIKE @Search";
+            string query = "SELECT LecturerId, LName, ClaimNo, Notes FROM Lecturer WHERE LecturerId LIKE @Search";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -73,7 +75,7 @@ namespace PROG6212POE
             return dataTable;
         }
 
-        private void calcBtn(object sender, RoutedEventArgs e)
+        private void updateBtn(object sender, RoutedEventArgs e)
         {
             int amount = int.Parse(numRate.Text);
 
@@ -81,7 +83,7 @@ namespace PROG6212POE
             {
                 try
                 {
-                    calculateAmount(int.Parse(numRate.Text));
+                    update(int.Parse(numRate.Text));
                     MessageBox.Show($"Lecturer name updated successfully.");
                 }
                 catch (Exception ex)
@@ -98,7 +100,7 @@ namespace PROG6212POE
 
 
 
-        private void calculateAmount(int amount)
+        private void update(int amount)
         {
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
@@ -128,6 +130,100 @@ namespace PROG6212POE
                     }
                 }
 
+
+            }
+        }
+
+        private void calcBtn(object sender, RoutedEventArgs e)
+        {
+           
+                DataTable searchResults2 = claimAmount();
+                dataGridResults2.ItemsSource = searchResults2.DefaultView;
+            
+
+        }
+        private DataTable claimAmount ()
+        {
+            DataTable dataTable = new DataTable();
+
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string query = "select LecturerId, LName,LSName,ClaimNo,HoursWorked*HourRate AS Total " +
+                "from Lecturer";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                }
+            }
+
+            return dataTable;
+        }
+
+        private DataTable pendingClaims()
+        {
+            DataTable dataTable = new DataTable();
+
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string query = "select * from Track where TStatus='Pending';";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                }
+            }
+
+            return dataTable;
+        }
+
+
+
+        private void approveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string accept = "Approved";
+
+            statusChange(accept);
+            MessageBox.Show($"updated successfully. \nApplication Accepted.");
+        }
+
+        private void rejectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string reject = "Rejected";
+
+            statusChange(reject);
+            MessageBox.Show($"updated successfully. \nApplication Rejected.");
+        }
+        private void statusChange(string option)
+        {
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            // SQL query to update the lecturer name
+            string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the SQL query
+                    command.Parameters.AddWithValue("@LecturerID", search);
+                    command.Parameters.AddWithValue("@Status", option);
+
+                    // Open the connection and execute the update
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    // Check if any row was updated
+
+                }
 
             }
         }
