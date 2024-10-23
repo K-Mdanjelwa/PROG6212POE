@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         Title="ProgramCoWindow" Height="450" Width="800">
     <Grid Background="#FFABE6F7">
-        <TextBox HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,49,0,0" TextWrapping="Wrap" Text="Search (Lecturer ID):" VerticalAlignment="Top"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF"/>
+        <Button Name="sear" Click="searchBtn" Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,90,0,0" TextWrapping="Wrap" Text="Record Results:" VerticalAlignment="Top" Height="17" Width="106"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,107,400,201"/>
-        <TextBlock HorizontalAlignment="Left" Margin="51,256,0,0" TextWrapping="Wrap" Text="Days Worked:" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGridResults"  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,107,400,201"/>
+        <TextBlock HorizontalAlignment="Left" Margin="51,256,0,0" TextWrapping="Wrap" Text="Hours Worked:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="51,324,0,0" TextWrapping="Wrap" Text="Eligible for claim?" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="155,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Approve" HorizontalAlignment="Left" Margin="51,345,0,0" VerticalAlignment="Top" Width="65" Background="#FF57B065" Click="Button_Click"/>
-        <Button Content="Reject" HorizontalAlignment="Left" Margin="170,345,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B"/>
+        <TextBox x:Name="txtDWorked"  HorizontalAlignment="Left" Margin="155,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Approve" HorizontalAlignment="Left" Margin="51,345,0,0" VerticalAlignment="Top" Width="65" Background="#FF57B065" Click="approveBtn"/>
+        <Button Content="Reject" HorizontalAlignment="Left" Margin="170,345,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B" Click="rejectBtn"/>
+        <Button x:Name="updateBtn" Content="Button" HorizontalAlignment="Left" Margin="308,252,0,0" VerticalAlignment="Top" Click="updateBtn_Click"/>
 
     </Grid>
 </Window>

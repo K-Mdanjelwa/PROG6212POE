@@ -9,7 +9,7 @@
     <Grid Background="#FFABE6F7">
 
         <TextBlock HorizontalAlignment="Left" Margin="495,109,0,0" TextWrapping="Wrap" Text="Hourly Rate(R/per hour):" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="629,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="numRate"  HorizontalAlignment="Left" Margin="629,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="txtLectureSearch" HorizontalAlignment="Left" Margin="170,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,49,0,0" TextWrapping="Wrap" Text="Search (Lecturer ID):" VerticalAlignment="Top"/>
         <Button Click="SearchBtn"  Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF" />
@@ -21,7 +21,7 @@
         <Button Content="Reject" HorizontalAlignment="Left" Margin="312,310,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B"/>
         <TextBlock HorizontalAlignment="Left" Margin="495,178,0,0" TextWrapping="Wrap" Text="Total Claim Amount:" VerticalAlignment="Top" TextDecorations="Underline"/>
         <TextBox HorizontalAlignment="Left" Margin="495,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Calculate" HorizontalAlignment="Left" Margin="629,130,0,0" VerticalAlignment="Top" Background="#FF8899EF"/>
+        <Button Click="calcBtn"  Content="Calculate" HorizontalAlignment="Left" Margin="629,130,0,0" VerticalAlignment="Top" Background="#FF8899EF"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="495,222,0,0" VerticalAlignment="Top"/>
 
     </Grid>

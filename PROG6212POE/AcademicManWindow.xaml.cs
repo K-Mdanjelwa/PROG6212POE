@@ -1,8 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PROG6212POE
 {
@@ -21,6 +25,7 @@ namespace PROG6212POE
     /// </summary>
     public partial class FinanceManWindow : Window
     {
+        public static string search;
         public FinanceManWindow()
         {
             InitializeComponent();
@@ -33,9 +38,9 @@ namespace PROG6212POE
 
         private void SearchBtn(object sender, RoutedEventArgs e)
         {
-            string search=txtLectureSearch.Text;
+            search = txtLectureSearch.Text;
 
-            
+
             if (!string.IsNullOrEmpty(search))
             {
                 // Call the method to search files and populate the DataGrid
@@ -66,6 +71,65 @@ namespace PROG6212POE
             }
 
             return dataTable;
+        }
+
+        private void calcBtn(object sender, RoutedEventArgs e)
+        {
+            int amount = int.Parse(numRate.Text);
+
+            if (amount != 0)
+            {
+                try
+                {
+                    calculateAmount(int.Parse(numRate.Text));
+                    MessageBox.Show($"Lecturer name updated successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"Please enter a valid ");
+            }
+        }
+
+
+
+
+        private void calculateAmount(int amount)
+        {
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            // SQL query to update the lecturer name
+            string query = "UPDATE Lecturer SET HourRate = @HourRate WHERE LecturerID = @LecturerID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the SQL query
+                    command.Parameters.AddWithValue("@LecturerID", search);
+                    command.Parameters.AddWithValue("@HourRate", amount);
+
+                    // Open the connection and execute the update
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Check if any row was updated
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Lecturer name updated successfully.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No lecturer found with the provided ID.");
+                    }
+                }
+
+
+            }
         }
     }
 }

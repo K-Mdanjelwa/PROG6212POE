@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,15 +21,109 @@ namespace PROG6212POE
     /// </summary>
     public partial class ProgramCoWindow : Window
     {
+        public int search;
         public ProgramCoWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+
+
+
+        private void searchBtn(object sender, RoutedEventArgs e)
         {
-            ProgramCoWindow AcWindow = new ProgramCoWindow();
-            AcWindow.Show();
+            search = int.Parse(txtSearch.Text);
+
+
+            if (search !=0)
+            {
+                // Call the method to search files and populate the DataGrid
+                DataTable searchResults = searchFunction(search);
+                dataGridResults.ItemsSource = searchResults.DefaultView;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a search value.");
+            }
+        }
+
+        private DataTable searchFunction(int search)
+        {
+            DataTable dataTable = new DataTable();
+
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string query = "SELECT LecturerId, LName, HoursWorked, Notes FROM Lecturer WHERE LecturerId LIKE @Search";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Search", "%" + search + "%");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                }
+            }
+
+            return dataTable;
+
+        }
+
+        private void updateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int DWorked = int.Parse(txtDWorked.Text);
+
+
+            try
+            {
+                update(int.Parse(txtDWorked.Text));
+                MessageBox.Show($"Hours Worked updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            searchFunction(search);
+        }
+
+        private void update(int dWorked)
+        {
+            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            // SQL query to update the lecturer name
+            string query = "UPDATE Lecturer SET HoursWorked = @HourWorked WHERE LecturerID = @LecturerID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the SQL query
+                    command.Parameters.AddWithValue("@LecturerID", search);
+                    command.Parameters.AddWithValue("@HourWorked", dWorked);
+
+                    // Open the connection and execute the update
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                }
+
+            }
+        }
+
+        private void approveBtn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rejectBtn(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
+
+    
+    
+    
+

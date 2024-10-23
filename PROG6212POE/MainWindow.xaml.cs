@@ -113,5 +113,11 @@ namespace PROG6212POE
             FinanceManWindow run2=new FinanceManWindow();
            run2.Show();
         }
+
+        private void PogCo(object sender, RoutedEventArgs e)
+        {
+            ProgramCoWindow run = new ProgramCoWindow();
+            run.Show();
+        }
     }
 }
