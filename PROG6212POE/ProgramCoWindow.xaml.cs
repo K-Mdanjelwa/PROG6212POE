@@ -38,7 +38,7 @@ namespace PROG6212POE
 
             if (search != 0)
             {
-                // Call the method to search files and populate the DataGrid
+                
                 DataTable searchResults = searchFunction(search);
                 dataGridResults.ItemsSource = searchResults.DefaultView;
             }
@@ -62,7 +62,7 @@ namespace PROG6212POE
                     command.Parameters.AddWithValue("@Search", "%" + search + "%");
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                    adapter.Fill(dataTable); 
                 }
             }
 
@@ -91,18 +91,18 @@ namespace PROG6212POE
         {
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
-            // SQL query to update the lecturer name
+            
             string query = "UPDATE Lecturer SET HoursWorked = @HourWorked WHERE LecturerID = @LecturerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add parameters to the SQL query
+                    
                     command.Parameters.AddWithValue("@LecturerID", search);
                     command.Parameters.AddWithValue("@HourWorked", dWorked);
 
-                    // Open the connection and execute the update
+                    /
                     connection.Open();
                     command.ExecuteNonQuery();
 
@@ -132,7 +132,7 @@ namespace PROG6212POE
         {
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
-            // SQL query to update the lecturer name
+            
             string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -143,11 +143,11 @@ namespace PROG6212POE
                     command.Parameters.AddWithValue("@LecturerID", search);
                     command.Parameters.AddWithValue("@Status", option);
 
-                    // Open the connection and execute the update
+                    
                     connection.Open();
                     command.ExecuteNonQuery();
 
-                    // Check if any row was updated
+                   
                     
                 }
 

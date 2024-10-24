@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Runtime.CompilerServices;
-
 
 namespace PROGPOE6212.UnitTests
 {
@@ -10,27 +8,27 @@ namespace PROGPOE6212.UnitTests
     {
         private string connectionString = "your_test_db_connection_string";
 
-        // Set up the test data before each test
+        
         [TestInitialize]
         public void Setup()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                // Add initial data to the test database
+                
                 var command = new SqlCommand("INSERT INTO Lecturer (LecturerID, LName, LSName, HoursWorked, HourRate, Notes) VALUES (1, 'John', 'Doe', 40, 100, 'Some notes')", connection);
                 command.ExecuteNonQuery();
             }
         }
 
-        // Clean up test data after each test
+        
         [TestCleanup]
         public void Cleanup()
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                // Clean up the test data
+                
                 var command = new SqlCommand("DELETE FROM Lecturer", connection);
                 command.ExecuteNonQuery();
             }
@@ -39,20 +37,20 @@ namespace PROGPOE6212.UnitTests
         [TestMethod]
         public void SubmitBtn1_SuccessfullySavesDataToDatabase()
         {
-            // Arrange
+            
             var mainWindow = new MainWindow();
 
-            // Act
-            mainWindow.submitBtn1(); // Assuming this method uses the real connection string internally
+            
+            mainWindow.submitBtn1(); 
 
-            // Assert
+            
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 var command = new SqlCommand("SELECT COUNT(*) FROM Lecturer WHERE LName = 'John'", connection);
                 int count = (int)command.ExecuteScalar();
 
-                Assert.AreEqual(1, count); // Check if data was inserted
+                Assert.AreEqual(1, count); 
             }
         }
 

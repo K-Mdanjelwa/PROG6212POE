@@ -45,7 +45,7 @@ namespace PROG6212POE
 
             if (!string.IsNullOrEmpty(search))
             {
-                // Call the method to search files and populate the DataGrid
+                
                 DataTable searchResults = Search(search);
                 dataGridResults.ItemsSource = searchResults.DefaultView;
             }
@@ -68,7 +68,7 @@ namespace PROG6212POE
                     command.Parameters.AddWithValue("@Search", "%" + search + "%");
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                    adapter.Fill(dataTable);  
                 }
             }
 
@@ -104,22 +104,22 @@ namespace PROG6212POE
         {
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
-            // SQL query to update the lecturer name
+            
             string query = "UPDATE Lecturer SET HourRate = @HourRate WHERE LecturerID = @LecturerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add parameters to the SQL query
+                    
                     command.Parameters.AddWithValue("@LecturerID", search);
                     command.Parameters.AddWithValue("@HourRate", amount);
 
-                    // Open the connection and execute the update
+                   
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
 
-                    // Check if any row was updated
+                    
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Lecturer name updated successfully.");
@@ -157,7 +157,7 @@ namespace PROG6212POE
                     
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                    adapter.Fill(dataTable); 
                 }
             }
 
@@ -178,7 +178,7 @@ namespace PROG6212POE
 
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                    adapter.Fill(dataTable);  
                 }
             }
 
@@ -206,14 +206,14 @@ namespace PROG6212POE
         {
             string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
-            // SQL query to update the lecturer name
+            
             string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add parameters to the SQL query
+                    
                     command.Parameters.AddWithValue("@LecturerID", search);
                     command.Parameters.AddWithValue("@Status", option);
 
@@ -221,7 +221,7 @@ namespace PROG6212POE
                     connection.Open();
                     command.ExecuteNonQuery();
 
-                    // Check if any row was updated
+                    
 
                 }
 

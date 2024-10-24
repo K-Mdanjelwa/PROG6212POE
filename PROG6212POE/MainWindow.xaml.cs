@@ -31,7 +31,7 @@ namespace PROG6212POE
 
      
 
-        // Method to save the file to the database
+        
        
 
         private void submitBtn1(object sender, RoutedEventArgs e)
@@ -97,10 +97,10 @@ namespace PROG6212POE
             fileName = System.IO.Path.GetFileName(filePath);
             
             string status = "Pending";
-            // Database connection string (replace with your actual database details)
+            
             string connectionString = "Data Source = labG9AEB3\\SQLEXPRESS; Initial Catalog = MyFormDB; Integrated Security = True; Encrypt = True; Trust Server Certificate = True";
 
-            // SQL query to insert the file data
+            
             string query = "INSERT INTO Files (LecturerId, FileName, FileData) VALUES ('" + LecturerID + "', @FileName, @FileData);" +
                 "insert into Track(LecturerId,TStatus) values('" + LecturerID + "','"+status+"')";
 
@@ -108,11 +108,11 @@ namespace PROG6212POE
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Adding parameters for FileName and FileData
+                    
                     command.Parameters.AddWithValue("@FileName", fileName);
                     command.Parameters.AddWithValue("@FileData", fileData);
 
-                    // Open the connection and execute the query
+                    
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -141,7 +141,7 @@ namespace PROG6212POE
 
             if (lecturerId!=0)
             {
-                // Call the method to search files and populate the DataGrid
+              
                 DataTable searchResults = track(lecturerId);
                 dataGridResults.ItemsSource = searchResults.DefaultView;
             }
