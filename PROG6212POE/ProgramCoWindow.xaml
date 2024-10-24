@@ -17,7 +17,10 @@
         <TextBox x:Name="txtDWorked"  HorizontalAlignment="Left" Margin="155,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Approve" HorizontalAlignment="Left" Margin="51,345,0,0" VerticalAlignment="Top" Width="65" Background="#FF57B065" Click="approveBtn"/>
         <Button Content="Reject" HorizontalAlignment="Left" Margin="170,345,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B" Click="rejectBtn"/>
-        <Button x:Name="updateBtn" Content="Button" HorizontalAlignment="Left" Margin="308,252,0,0" VerticalAlignment="Top" Click="updateBtn_Click"/>
+        <Button x:Name="updateBtn" Content="Update" HorizontalAlignment="Left" Margin="308,252,0,0" VerticalAlignment="Top" Click="updateBtn_Click"/>
+        <Button Click="goToLect" Content="Lecturer Claim" HorizontalAlignment="Left" Margin="508,324,0,0" VerticalAlignment="Top"/>
+        <Button Click="goToAcM" Content="Academic Manager" HorizontalAlignment="Left" Margin="628,325,0,0" VerticalAlignment="Top"/>
+        <Label Content="Navigate to -->" HorizontalAlignment="Left" Margin="508,281,0,0" VerticalAlignment="Top" Width="99"/>
 
     </Grid>
 </Window>

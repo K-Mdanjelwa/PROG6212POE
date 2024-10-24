@@ -227,6 +227,18 @@ namespace PROG6212POE
 
             }
         }
+
+        private void goToLecturer(object sender, RoutedEventArgs e)
+        {
+            MainWindow run=new MainWindow();
+            run.Show();
+        }
+
+        private void goToProgCo(object sender, RoutedEventArgs e)
+        {
+            ProgramCoWindow run=new ProgramCoWindow();
+            run.Show();
+        }
     }
 }
 

@@ -153,6 +153,18 @@ namespace PROG6212POE
 
             }
         }
+
+        private void goToLect(object sender, RoutedEventArgs e)
+        {
+            MainWindow run= new MainWindow();
+            run.Show();
+        }
+
+        private void goToAcM(object sender, RoutedEventArgs e)
+        {
+            FinanceManWindow run= new FinanceManWindow();
+            run.Show();
+        }
     }
 }
 

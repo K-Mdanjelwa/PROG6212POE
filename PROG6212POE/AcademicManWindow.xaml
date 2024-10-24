@@ -16,15 +16,18 @@
         <TextBlock HorizontalAlignment="Left" Margin="30,90,0,0" TextWrapping="Wrap" Text="Record Results:" VerticalAlignment="Top" Height="17" Width="106"/>
         <DataGrid Name="dataGridResults" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,107,0,0" Height="125" Width="441"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="30,311,0,0" TextWrapping="Wrap" Text="Change Status:" VerticalAlignment="Top" FontSize="14"/>
-        <Button Name="approveBtn" Content="Approve" HorizontalAlignment="Left" Margin="30,335,0,0" VerticalAlignment="Top" Width="66" Background="#FF57B065" Click="approveBtn_Click"/>
-        <Button Name="rejectBtn"  Content="Reject" HorizontalAlignment="Left" Margin="133,335,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B" Click="rejectBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,293,0,0" TextWrapping="Wrap" Text="Change Status:" VerticalAlignment="Top" FontSize="14"/>
+        <Button Name="approveBtn" Content="Approve" HorizontalAlignment="Left" Margin="30,315,0,0" VerticalAlignment="Top" Width="66" Background="#FF57B065" Click="approveBtn_Click"/>
+        <Button Name="rejectBtn"  Content="Reject" HorizontalAlignment="Left" Margin="133,315,0,0" VerticalAlignment="Top" Width="76" Background="#FFF53B3B" Click="rejectBtn_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="370,272,0,0" TextWrapping="Wrap" Text="Total Claim Amount:" VerticalAlignment="Top" TextDecorations="Underline"/>
         <Button Click="updateBtn"  Content="Update" HorizontalAlignment="Left" Margin="736,46,0,0" VerticalAlignment="Top" Background="#FF8899EF"/>
         <Button Click="calcBtn" Content="Calculate" HorizontalAlignment="Left" Margin="370,377,0,0" VerticalAlignment="Top"/>
         <DataGrid Name="dataGridResults2" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,293,0,0" Height="84" Width="420"/>
         <Label Content="Pending Claims:" HorizontalAlignment="Left" Margin="519,86,0,0" VerticalAlignment="Top"/>
         <DataGrid Name="dataGridResults3" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="519,107,0,0" Height="125" Width="238" />
+        <Button Click="goToLecturer" Content="Lecturer Claim" HorizontalAlignment="Left" Margin="36,399,0,0" VerticalAlignment="Top"/>
+        <Button Click="goToProgCo" Content="Programme Coordinator" HorizontalAlignment="Left" Margin="159,399,0,0" VerticalAlignment="Top"/>
+        <Label Content="Navigate to -->" HorizontalAlignment="Left" Margin="36,366,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -169,7 +169,7 @@ namespace PROG6212POE
                     command.Parameters.AddWithValue("@Search",lectId );
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    adapter.Fill(dataTable);  // Fill the DataTable with the search results
+                    adapter.Fill(dataTable);  
                 }
             }
 

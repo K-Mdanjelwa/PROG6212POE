@@ -9,7 +9,7 @@
     <Grid Background="#FFABE6F7">
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" FontStyle="Italic"><Run Language="en-za" Text="Claims System"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="New Claims" VerticalAlignment="Top" FontSize="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" Text="Lecturer ID:" VerticalAlignment="Top" FontSize="24" Height="34" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" Text="Lecturer ID:" VerticalAlignment="Top" FontSize="24" Height="34" Width="137"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,181,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top" FontSize="24" Height="37" Width="68"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,233,0,0" TextWrapping="Wrap" Text="Surname:" VerticalAlignment="Top" FontSize="24" Height="31" Width="98"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,275,0,0" TextWrapping="Wrap" Text="Hours Worked:" VerticalAlignment="Top" FontSize="24" Height="34" Width="170"/>
