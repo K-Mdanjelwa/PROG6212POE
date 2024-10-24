@@ -102,7 +102,7 @@ namespace PROG6212POE
                     command.Parameters.AddWithValue("@LecturerID", search);
                     command.Parameters.AddWithValue("@HourWorked", dWorked);
 
-                    /
+                    
                     connection.Open();
                     command.ExecuteNonQuery();
 

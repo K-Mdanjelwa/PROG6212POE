@@ -84,7 +84,7 @@ namespace PROG6212POE
                 try
                 {
                     update(int.Parse(numRate.Text));
-                    MessageBox.Show($"Lecturer name updated successfully.");
+                    MessageBox.Show($"Hour Rate updated successfully.");
                 }
                 catch (Exception ex)
                 {
