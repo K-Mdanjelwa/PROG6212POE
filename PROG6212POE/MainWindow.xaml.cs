@@ -35,8 +35,10 @@ namespace PROG6212POE
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow r = new LoginWindow();
-            r.Show();
+            LectureWindow m=new LectureWindow();
+            m.Show();
+            //LoginWindow r = new LoginWindow();
+            //r.Show();
             this.Close();
         }
     }

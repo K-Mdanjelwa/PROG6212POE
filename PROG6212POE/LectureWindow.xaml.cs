@@ -39,55 +39,86 @@ namespace PROG6212POE
 
         private void submitBtn1(object sender, RoutedEventArgs e)
         {
-            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
-            SqlConnection con = new SqlConnection(connectionString);
-
-            con.Open();
-
-            LecturerID = int.Parse(numLectureId.Text);
-            string Name = txtName.Text;
-            string Surname = txtSurname.Text;
-            HoursWorked = int.Parse(numHWorked.Text);
-            HourRate = int.Parse(numHRate.Text);
-
-            float calc = HoursWorked * HourRate;
-
-            string Notes = txtNotes.Text;
-
-            string Query = "INSERT INTO Lecturer (LecturerID, LName, LSName, HoursWorked, HourRate, Notes)" +
-                " VALUES ('" + LecturerID + "', '" + Name + "', '" + Surname + "', '" + HoursWorked + "', '" + HourRate + "','" + Notes + "')";
-
-
-            SqlCommand cmd = new SqlCommand(Query, con);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            UploadFileToDatabase(filePath);
-            MessageBox.Show("Data successfully saved!!");
-
-            string query = "UPDATE Track SET Amount = @Cost WHERE LecturerID = @LecturerID";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string email = txtEmail.Text;
+
+                if (Validator.IsValidEmail(email))
                 {
+                    string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+                    SqlConnection con = new SqlConnection(connectionString);
 
-                    command.Parameters.AddWithValue("@LecturerID", LecturerID);
-                    command.Parameters.AddWithValue("@Cost", totalAmount);
+                    con.Open();
 
-                    // Open the connection and execute the update
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    LecturerID = int.Parse(numLectureId.Text);
+                    string Name = txtName.Text;
+                    string Surname = txtSurname.Text;
+                    HoursWorked = int.Parse(numHWorked.Text);
+                    HourRate = int.Parse(numHRate.Text);
+                    string Em = txtEmail.Text;
+
+                    float calc = HoursWorked * HourRate;
+
+                    string Notes = txtNotes.Text;
+
+                    string Query = "INSERT INTO Lecturer (LecturerID, LName, LSName, HoursWorked, HourRate, Notes,mail)" +
+                        " VALUES ('" + LecturerID + "', '" + Name + "', '" + Surname + "', '" + HoursWorked + "', '" + HourRate + "','" + Notes + "','" + Em + "')";
+
+
+                    SqlCommand cmd = new SqlCommand(Query, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    UploadFileToDatabase(filePath);
+                    MessageBox.Show("Data successfully saved!!");
+
+                    string query = "UPDATE Track SET Amount = @Cost WHERE LecturerID = @LecturerID";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+
+                            command.Parameters.AddWithValue("@LecturerID", LecturerID);
+                            command.Parameters.AddWithValue("@Cost", totalAmount);
+
+                            // Open the connection and execute the update
+                            connection.Open();
+                            command.ExecuteNonQuery();
 
 
 
+                        }
+
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Invalid Email");
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: "+ex.Message);
             }
 
             //calculate();
 
 
         }
+        private void ValidateEmail_Click(object sender, RoutedEventArgs e)
+        {
+            string email = txtEmail.Text;
+
+            if (Validator.IsValidEmail(email))
+            {
+               MessageBox.Show("Email is valid!");
+                
+            }
+            else
+            {
+                MessageBox.Show("Email is valid!");
+            }
+        }
+
         public string filePath;
 
         private void Calc()
@@ -188,17 +219,24 @@ namespace PROG6212POE
 
         private void statusBtn(object sender, RoutedEventArgs e)
         {
-            int lecturerId = int.Parse(txtlectSearch.Text);
-
-            if (lecturerId != 0)
+            try
             {
+                int lecturerId = int.Parse(txtlectSearch.Text);
 
-                DataTable searchResults = track(lecturerId);
-                dataGridResults.ItemsSource = searchResults.DefaultView;
+                if (lecturerId != 0)
+                {
+
+                    DataTable searchResults = track(lecturerId);
+                    dataGridResults.ItemsSource = searchResults.DefaultView;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a search value.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter a search value.");
+                MessageBox.Show("Error: "+ex.Message);
             }
         }
         private DataTable track(int lectId)
