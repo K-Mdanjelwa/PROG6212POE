@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,7 +53,7 @@ namespace PROG6212POE
         {
             DataTable dataTable = new DataTable();
 
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
             string query = "SELECT LecturerId, LName, HoursWorked, Notes FROM Lecturer WHERE LecturerId LIKE @Search";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -72,7 +73,15 @@ namespace PROG6212POE
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-            int DWorked = int.Parse(txtDWorked.Text);
+            int DWorked;
+            if (int.TryParse(txtDWorked.Text, out DWorked))
+            {
+                DWorked = int.Parse(txtDWorked.Text);
+            }
+            else
+            {
+                MessageBox.Show($"Enter valid format");
+            }
 
 
             try
@@ -85,13 +94,15 @@ namespace PROG6212POE
                 MessageBox.Show($"Error: {ex.Message}");
             }
             searchFunction(search);
+            calculate();
         }
+
 
         private void update(int dWorked)
         {
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
-            
+          
             string query = "UPDATE Lecturer SET HoursWorked = @HourWorked WHERE LecturerID = @LecturerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -130,7 +141,7 @@ namespace PROG6212POE
 
         private void statusChange(string option)
         {
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
             
             string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";
@@ -153,6 +164,81 @@ namespace PROG6212POE
 
             }
         }
+        double totalPay = 0;
+
+        private void calculate()
+        {
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            try
+            {
+                // Hardcoded Employee ID
+                int employeeID = int.Parse(txtSearch.Text);
+
+                // Variables to store HoursWorked and HourlyRate
+                int hoursWorked;
+                int hourlyRate;
+
+                // Fetch data from the database
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT HoursWorked, HourRate FROM Lecturer WHERE LecturerId = @EmployeeID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                hoursWorked = reader.GetInt32(reader.GetOrdinal("HoursWorked"));
+                                hourlyRate = reader.GetInt32(reader.GetOrdinal("HourRate"));
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Employee not found.");
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                // Calculate Total Pay
+                totalPay = hoursWorked * hourlyRate;
+                cala();
+
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+        private void cala()
+        {
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+
+            string query = "update Track set Amount=@pay where LecturerId=@LecID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the SQL query
+                    command.Parameters.AddWithValue("@LecID", search);
+                    command.Parameters.AddWithValue("@pay", totalPay);
+
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+
+
+                }
+
+            }
+        }
 
         private void goToLect(object sender, RoutedEventArgs e)
         {
@@ -165,6 +251,8 @@ namespace PROG6212POE
             FinanceManWindow run= new FinanceManWindow();
             run.Show();
         }
+
+   
     }
 }
 

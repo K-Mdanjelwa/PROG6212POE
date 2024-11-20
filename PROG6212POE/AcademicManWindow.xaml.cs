@@ -58,7 +58,7 @@ namespace PROG6212POE
         {
             DataTable dataTable = new DataTable();
 
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
             string query = "SELECT LecturerId, LName, ClaimNo, Notes FROM Lecturer WHERE LecturerId LIKE @Search";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -102,7 +102,7 @@ namespace PROG6212POE
 
         private void update(int amount)
         {
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
             
             string query = "UPDATE Lecturer SET HourRate = @HourRate WHERE LecturerID = @LecturerID";
@@ -146,7 +146,7 @@ namespace PROG6212POE
         {
             DataTable dataTable = new DataTable();
 
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
             string query = "select LecturerId, LName,LSName,ClaimNo,HoursWorked*HourRate AS Total " +
                 "from Lecturer";
 
@@ -168,7 +168,7 @@ namespace PROG6212POE
         {
             DataTable dataTable = new DataTable();
 
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
             string query = "select * from Track where TStatus='Pending';";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -204,7 +204,7 @@ namespace PROG6212POE
         }
         private void statusChange(string option)
         {
-            string connectionString = "Data Source=labG9AEB3\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
 
             
             string query = "UPDATE Track SET TStatus = @Status WHERE LecturerID = @LecturerID";

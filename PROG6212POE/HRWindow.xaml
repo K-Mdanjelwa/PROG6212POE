@@ -1,13 +1,12 @@
-﻿<Window x:Class="PROG6212POE.MainWindow"
+﻿<Window x:Class="PROG6212POE.HRWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG6212POE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="714" Width="1154">
-    <Grid Background="#FFABE6F7" Margin="0,2,0,-2" HorizontalAlignment="Center" Width="1154">
-        <Button Content="Get Started"  VerticalAlignment="Top" Click="Button_Click" />
+        Title="HRWindow" Height="450" Width="800">
+    <Grid>
         
     </Grid>
 </Window>
