@@ -30,8 +30,7 @@
         <Label Content="Hourly Rate (R):" HorizontalAlignment="Left" Margin="639,184,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBox TextChanged="Rate_Changed" Name="numHRate" HorizontalAlignment="Left" Margin="759,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" Height="26"/>
         <TextBlock HorizontalAlignment="Left" Margin="913,184,0,0" TextWrapping="Wrap" Text="(Input amount Per hr)" VerticalAlignment="Top"/>
-        <Button Content="Academic Manager" HorizontalAlignment="Left" Margin="938,445,0,0" VerticalAlignment="Top" Click="Button_Click" Height="24" Width="131"/>
-        <Button Click="PogCo"  Content="Programme Co" HorizontalAlignment="Left" Margin="773,445,0,0" VerticalAlignment="Top" Height="24" Width="120"/>
+        <Button Click="PogCo"  Content="Sign Out" HorizontalAlignment="Left" Margin="773,445,0,0" VerticalAlignment="Top" Height="24" Width="120"/>
         <Label Content="Navigate to -->" HorizontalAlignment="Left" Margin="773,415,0,0" VerticalAlignment="Top"/>
         <Label Content="Claim Amount: " HorizontalAlignment="Left" Margin="207,439,0,0" VerticalAlignment="Top" Width="116" Height="26"/>
         <Label Name="label" Content="No Amount" HorizontalAlignment="Left" Margin="290,439,0,0" VerticalAlignment="Top" Width="92" Height="26"/>

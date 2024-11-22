@@ -232,20 +232,13 @@ namespace PROG6212POE
 
         private void goToLecturer(object sender, RoutedEventArgs e)
         {
-            HRWindow run=new HRWindow();
-            run.Show();
+            LoginWindow m = new LoginWindow();
+            m.Show();
+            this.Close();
         }
 
-        private void goToProgCo(object sender, RoutedEventArgs e)
-        {
-            ProgramCoWindow run=new ProgramCoWindow();
-            run.Show();
-        }
 
-        private void loadBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
     }
 }

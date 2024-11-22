@@ -204,17 +204,13 @@ namespace PROG6212POE
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            FinanceManWindow run2 = new FinanceManWindow();
-            run2.Show();
-        }
+       
 
         private void PogCo(object sender, RoutedEventArgs e)
         {
-            ProgramCoWindow run = new ProgramCoWindow();
-            run.Show();
+            LoginWindow login2 = new LoginWindow();
+            login2.Show();
+            this.Close();
         }
 
         private void statusBtn(object sender, RoutedEventArgs e)
