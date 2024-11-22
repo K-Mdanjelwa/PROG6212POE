@@ -81,15 +81,43 @@ namespace PROG6212POE
                 {
                     conn.Open();
 
-                    string query = @"
-                        UPDATE Lecturer
-                        SET LName = @LName, LSName = @LSName
-                        WHERE LecturerId = @LecturerId";
+                    // Start building the query
+                    string query = "UPDATE Lecturer SET ";
+                    List<string> updates = new List<string>();
+                    List<SqlParameter> parameters = new List<SqlParameter>();
+
+                    // Check each field and add to the query if not empty
+                    if (!string.IsNullOrWhiteSpace(txtLName.Text))
+                    {
+                        updates.Add("LName = @LName");
+                        parameters.Add(new SqlParameter("@LName", txtLName.Text));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(txtLSName.Text))
+                    {
+                        updates.Add("LSName = @LSName");
+                        parameters.Add(new SqlParameter("@LSName", txtLSName.Text));
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(txtEmail.Text))
+                    {
+                        updates.Add("mail = @Email");
+                        parameters.Add(new SqlParameter("@Email", txtEmail.Text));
+                    }
+
+                    // If no fields are provided, show an error
+                    if (updates.Count == 0)
+                    {
+                        MessageBox.Show("Please fill in at least one field to update.");
+                        return;
+                    }
+
+                    // Combine the query
+                    query += string.Join(", ", updates) + " WHERE LecturerId = @LecturerId";
+                    parameters.Add(new SqlParameter("@LecturerId", lecturerId));
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@LecturerId", lecturerId);
-                    cmd.Parameters.AddWithValue("@LName", txtLName.Text);
-                    cmd.Parameters.AddWithValue("@LSName", txtLSName.Text);
+                    cmd.Parameters.AddRange(parameters.ToArray());
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)

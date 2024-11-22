@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG6212POE"
         mc:Ignorable="d"
-        Title="MainWindow" Height="714" Width="1154">
-    <Grid Background="#FFABE6F7" Margin="0,2,0,-2" HorizontalAlignment="Center" Width="1154">
-        <Button Content="Get Started"  VerticalAlignment="Top" Click="Button_Click" />
-        
+        Title="MainWindow" Height="583" Width="1002">
+    <Grid Background="#FFABE6F7" Margin="0,2,0,-6" HorizontalAlignment="Center" Width="1000">
+        <Button Content="Get Started"  VerticalAlignment="Top" Click="Button_Click" Margin="186,285,181,0" Height="42" />
+        <TextBlock FontFamily="Ariel" HorizontalAlignment="Left" Margin="284,62,0,0" FontSize="40" TextWrapping="Wrap" Text="Welcome To Lecture Claims System." VerticalAlignment="Top" Height="118" Width="438"/>
+
     </Grid>
 </Window>
