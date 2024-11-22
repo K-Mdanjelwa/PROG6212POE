@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        
         <TextBlock Text="Username:" Grid.Row="0" />
         <TextBox x:Name="txtUsername"  Grid.Row="1" Margin="0,5" />
         <TextBlock Text="Password:" Grid.Row="2" />

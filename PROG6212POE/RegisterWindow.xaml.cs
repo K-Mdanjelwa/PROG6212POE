@@ -52,6 +52,7 @@ namespace PROG6212POE
                     lblMessage.Text = "Registration successful!";
                     LoginWindow r = new LoginWindow();
                     r.Show();
+                    this.Close();
                 }
             }
             catch (Exception ex)
