@@ -28,8 +28,8 @@ namespace PROG6212POE
         public ProgramCoWindow()
         {
             InitializeComponent();
-            
-           
+            load();
+
         }
 
         string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
@@ -173,7 +173,7 @@ namespace PROG6212POE
             }
         }
         double totalPay = 0;
-
+        //<Button Click = "LoadAndUpdateData_Click" Content="Refresh" HorizontalAlignment="Left" Margin="452,222,0,0" VerticalAlignment="Top" Width="51"/>
         private void calculate()
         {
             string connectionString = "Data Source=LISAKHANYA\\SQLEXPRESS;Initial Catalog=MyFormDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";

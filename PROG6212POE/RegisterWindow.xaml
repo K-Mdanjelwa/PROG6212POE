@@ -15,15 +15,17 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="txtUsername"  Grid.Row="0" Margin="0,5" />
-        <PasswordBox x:Name="txtPassword"  Grid.Row="1" Margin="0,5" />
-        <ComboBox x:Name="cmbRole" Grid.Row="2" Margin="0,5">
+        <TextBlock Text="Username:" Grid.Row="0" />
+        <TextBox x:Name="txtUsername"  Grid.Row="1" Margin="0,5" />
+        <TextBlock Text="Password:" Grid.Row="2" />
+        <PasswordBox x:Name="txtPassword"  Grid.Row="3" Margin="0,5" />
+        <ComboBox x:Name="cmbRole" Grid.Row="4" Margin="0,5">
             <ComboBoxItem Content="Lecturer" />
             <ComboBoxItem Content="Programme Coordinator" />
             <ComboBoxItem Content="Academic Manager" />
             <ComboBoxItem Content="HR" />
         </ComboBox>
-        <Button Content="Register" Click="Register_Click" Grid.Row="3" Margin="0,20" Width="100" HorizontalAlignment="Center" />
-        <TextBlock x:Name="lblMessage" Grid.Row="4" Foreground="Red" Margin="0,5" />
+        <Button Content="Register" Click="Register_Click"  Margin="0,65,0,-44" Width="100" HorizontalAlignment="Center" Grid.Row="4" />
+        <TextBlock x:Name="lblMessage"  Foreground="Red" Margin="10,90,-10,-65" Grid.Row="4" />
     </Grid>
 </Window>

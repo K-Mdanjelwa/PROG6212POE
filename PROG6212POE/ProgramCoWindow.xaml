@@ -23,7 +23,7 @@
         <Label Content="Navigate to -->" HorizontalAlignment="Left" Margin="508,281,0,0" VerticalAlignment="Top" Width="99"/>
         <TextBlock HorizontalAlignment="Left" Margin="452,58,0,0" TextWrapping="Wrap" Text="Automated Approved(50 Hours or more)_" VerticalAlignment="Top"/>
         <DataGrid  x:Name="dataGridResults2" Margin="452,79,26,217"/>
-        <Button Click="LoadAndUpdateData_Click" Content="Load" HorizontalAlignment="Left" Margin="452,222,0,0" VerticalAlignment="Top" Width="51"/>
+        
 
     </Grid>
 </Window>

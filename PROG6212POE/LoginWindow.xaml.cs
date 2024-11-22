@@ -45,7 +45,7 @@ namespace PROG6212POE
                     string query = "SELECT Role FROM Users WHERE Username = @Username AND Password = @Password";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password); // Hash password in production
+                    command.Parameters.AddWithValue("@Password", password); 
 
                     var role = command.ExecuteScalar() as string;
 

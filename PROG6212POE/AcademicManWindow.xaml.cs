@@ -29,8 +29,10 @@ namespace PROG6212POE
         public FinanceManWindow()
         {
             InitializeComponent();
+
             DataTable pendingResults = pendingClaims();
             dataGridResults3.ItemsSource = pendingResults.DefaultView;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -230,7 +232,7 @@ namespace PROG6212POE
 
         private void goToLecturer(object sender, RoutedEventArgs e)
         {
-            MainWindow run=new MainWindow();
+            HRWindow run=new HRWindow();
             run.Show();
         }
 
@@ -239,6 +241,12 @@ namespace PROG6212POE
             ProgramCoWindow run=new ProgramCoWindow();
             run.Show();
         }
+
+        private void loadBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
 

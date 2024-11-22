@@ -14,7 +14,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="30,49,0,0" TextWrapping="Wrap" Text="Search (Lecturer ID):" VerticalAlignment="Top"/>
         <Button Click="SearchBtn"  Content="Search" HorizontalAlignment="Left" Margin="357,49,0,0" VerticalAlignment="Top" Height="18" Width="61" Background="#FF8899EF" />
         <TextBlock HorizontalAlignment="Left" Margin="30,90,0,0" TextWrapping="Wrap" Text="Record Results:" VerticalAlignment="Top" Height="17" Width="106"/>
-        <DataGrid Name="dataGridResults" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,107,0,0" Height="125" Width="441"/>
+        <DataGrid Name="dataGridResults" AutoGenerateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,107,0,0" Height="125" Width="297"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="30,293,0,0" TextWrapping="Wrap" Text="Change Status:" VerticalAlignment="Top" FontSize="14"/>
         <Button Name="approveBtn" Content="Approve" HorizontalAlignment="Left" Margin="30,315,0,0" VerticalAlignment="Top" Width="66" Background="#FF57B065" Click="approveBtn_Click"/>
